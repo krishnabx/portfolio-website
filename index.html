@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+html_content = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +7,6 @@
     <title>Krishna Barfiwala - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
             --bg: #0a0a0a;
@@ -59,10 +58,7 @@
         }
         
         @keyframes slideDown {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .logo {
@@ -139,17 +135,11 @@
         }
         
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes fadeInScale {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            to { opacity: 1; transform: scale(1); }
         }
         
         .hero-image-wrapper {
@@ -257,6 +247,16 @@
         .btn-secondary:hover {
             background: var(--surface);
             border-color: var(--text-dim);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
         
         section {
@@ -525,6 +525,99 @@
             left: 0;
             color: var(--accent);
             font-weight: bold;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .project-item {
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .project-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideUpBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .project-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+        
+        .project-link {
+            color: var(--accent);
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            margin-top: 0.75rem;
+        }
+        
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .project-desc ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .project-desc li {
+            padding-left: 1.25rem;
+            position: relative;
+        }
+        
+        .project-desc li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
         }
         
         .skills-grid {
@@ -834,6 +927,10 @@
                 flex-direction: column;
             }
             
+            .project-header {
+                flex-direction: column;
+            }
+            
             .contact-links {
                 flex-direction: column;
             }
@@ -851,6 +948,7 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -880,12 +978,15 @@
                     <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
                     Send Email
                 </a>
+                <a href="Krishna_Barfiwala_Resume.pdf" download class="btn btn-accent">
+                    <i data-lucide="download" style="width: 20px; height: 20px;"></i>
+                    Download Resume
+                </a>
             </div>
         </div>
         <div class="hero-image-container">
             <div class="hero-image-wrapper">
-                <img src="profile.jpeg" alt="Krishna Barfiwala">
-
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Krishna Barfiwala">
             </div>
         </div>
     </section>
@@ -942,7 +1043,7 @@
             <div class="experience-item">
                 <div class="experience-header">
                     <h3 class="experience-title">Data Analyst</h3>
-                    <span class="experience-date">Sep 2024 - Nov 2025</span>
+                    <span class="experience-date">September 2024 - October 2025</span>
                 </div>
                 <p class="experience-company">Gregory Welteroth Advertising</p>
                 <p class="experience-location">Pennsylvania, USA</p>
@@ -958,40 +1059,41 @@
                 <ul class="experience-achievements">
                     <li>Built and maintained 10+ Tableau dashboards for 5+ major clients to track campaign performance metrics such as CTR, CPA, conversion rate, and ROAS, used in monthly executive and client performance reviews</li>
                     <li>Designed automated ETL pipelines in Alteryx to clean and combine survey and sales data stored in AWS S3, publishing analytics-ready outputs back to S3 for Tableau consumption, saving roughly 10 hours of manual work per week</li>
-                    <li>Developed a Python-based data validation framework using regex pattern checks and anomaly detection to resolve inconsistencies across multiple data sources, improving overall data accuracy from ~75% to ~95%</li>
                     <li>Used AI-assisted workflows (Claude/GPT-4) and optimized SQL queries (CTEs, joins, indexing) to speed up ad-hoc data cleaning and exploratory analysis, reducing turnaround time from around 4 hours to about 1 hour</li>
                     <li>Built and executed an A/B testing framework in Python to evaluate campaign changes, validating over $200K in ad spend efficiency and informing leadership decisions on approximately $500K in quarterly budget allocation</li>
                     <li>Performed customer segmentation on 100K+ survey responses using K-means clustering to identify buyer personas such as impulse buyers and luxury-focused customers, supporting large-scale marketing strategy planning for fintech clients</li>
-                    <li>Partnered closely with marketing and sales teams to define KPIs and reporting requirements, standardizing data models and reducing dashboard development time</li>
+                    <li>Partnered closely with marketing and sales teams to define KPIs and reporting requirements, standardizing data models and reducing dashboard development time by about 30%</li>
                 </ul>
             </div>
             
             <div class="experience-item">
                 <div class="experience-header">
                     <h3 class="experience-title">Data Analyst Intern</h3>
-                    <span class="experience-date">May 2023 - Sep 2023</span>
+                    <span class="experience-date">May 2023 - September 2023</span>
                 </div>
                 <p class="experience-company">StudentsLanding Inc.</p>
                 <p class="experience-location">Boston, USA</p>
                 <div class="experience-tools">
                     <span class="tool-tag">Snowflake</span>
+                    <span class="tool-tag">Agentic AI-Assisted Analytics</span>
                     <span class="tool-tag">AWS S3</span>
                     <span class="tool-tag">SQL</span>
                     <span class="tool-tag">Power BI</span>
                     <span class="tool-tag">Data Modeling</span>
+                    <span class="tool-tag">ETL Pipelines</span>
                 </div>
                 <ul class="experience-achievements">
-                    <li>Built an end-to-end data pipeline moving property and transaction data from AWS S3 into Snowflake, designing schemas for 20K+ property records and improving query performance by roughly 30%</li>
-                    <li>Analyzed over 2M customer and listing records in Snowflake using SQL (CTEs, joins, aggregations) to identify high-value properties and key churn drivers such as late payments and non-renewals. Insights contributed to a reported 28% churn reduction and approximately $1M in retained revenue</li>
-                    <li>Developed a Power BI dashboard tracking 10+ tenant and property KPIs including payment behavior and occupancy trends, enabling proactive outreach to at-risk tenants</li>
-                    <li>Delivered weekly analytical reports to marketing and operations teams, supporting retention strategies and enabling same-day operational decisions</li>
+                    <li>Built an end-to-end data pipeline moving property and transaction data from AWS S3 into Snowflake, designing schemas for 20K+ property records and improving query performance by ~30%</li>
+                    <li>Analyzed 2M+ customer and listing records in Snowflake using SQL (CTEs, joins, aggregations) to identify high-value properties and churn drivers such as late payments and non-renewals, contributing to a reported 28% churn reduction and ~$1M in retained revenue</li>
+                    <li>Developed a Power BI dashboard tracking 10+ tenant and property KPIs including payment behavior and occupancy trends, enabling proactive identification of at-risk tenants</li>
+                    <li>Applied an agentic AI-assisted analytics framework to speed up ad-hoc analysis and reporting (query drafting, validation checks, summary generation), enabling faster insight delivery and same-day</li>
                 </ul>
             </div>
             
             <div class="experience-item">
                 <div class="experience-header">
                     <h3 class="experience-title">Data Analyst</h3>
-                    <span class="experience-date">Jan 2021 - Aug 2022</span>
+                    <span class="experience-date">January 2021 - August 2022</span>
                 </div>
                 <p class="experience-company">Kantar Worldpanel</p>
                 <p class="experience-location">Mumbai, India</p>
@@ -1011,6 +1113,151 @@
                     <li>Improved brand performance reporting efficiency by about 75% by optimizing storage with Parquet formats and partitioning, enabling near real-time dashboard refreshes in Amazon QuickSight for advertising effectiveness analysis</li>
                     <li>Collaborated with market research teams across three business units to define KPI frameworks and data requirements, reducing report development timelines from roughly two weeks to five days and minimizing rework</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="about-text">
+            End-to-end data solutions showcasing technical expertise and business impact
+        </p>
+        <div class="projects-grid">
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Medical Insurance Cost Prediction</h3>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Flask</span>
+                    <span class="tool-tag">HTML/CSS/JavaScript</span>
+                    <span class="tool-tag">AWS EC2</span>
+                    <span class="tool-tag">Machine Learning</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Built ML application to predict medical insurance costs using regression models on 50K+ patient records; performed feature engineering (BMI risk categories), hyperparameter tuning via GridSearchCV, and K-Fold cross-validation</li>
+                        <li>Deployed Flask API and web interface on AWS EC2 for real-time predictions, demonstrating production MLOps workflow</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Tableau Road Trip Analytics Dashboard</h3>
+                    <a href="https://public.tableau.com/app/profile/krishna.barfiwala1195/viz/PacificRoadTripDashboardAnalysis/Dashboard3" target="_blank" class="project-link">
+                        View Dashboard <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                    </a>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Tableau</span>
+                    <span class="tool-tag">Data Visualization</span>
+                    <span class="tool-tag">Geospatial Analysis</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Built an interactive Tableau dashboard analyzing a multi-city road trip using distance, stops, and geographic routing data</li>
+                        <li>Applied map layers, calculated fields, and filters to explore routes, locations, and travel patterns</li>
+                        <li>Focused on clean visual storytelling and usability rather than complex modeling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Snowflake Airbnb Analytics</h3>
+                    <a href="https://github.com/krishnabx/snowflake-airbnb-analytics-sql" target="_blank" class="project-link">
+                        View on GitHub <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                    </a>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Snowflake</span>
+                    <span class="tool-tag">SQL</span>
+                    <span class="tool-tag">AWS S3</span>
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Dimensional Modeling</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Took raw Airbnb data stored in AWS S3, used Python for data preprocessing and cleaning; Snowflake SQL for table creation, transformations, and analytical queries</li>
+                        <li>Designed and implemented a star schema with fact and dimension tables to analyze Airbnb listings, pricing, and availability data</li>
+                        <li>Exported curated outputs back to S3 for downstream use and sharing</li>
+                        <li>Enabled analysis of occupancy, revenue trends, and neighborhood-level performance using production-style warehouse modeling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Reddit Data Pipeline with Airflow</h3>
+                    <a href="https://github.com/krishnabx/reddit-airflow-data-pipeline" target="_blank" class="project-link">
+                        View on GitHub <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                    </a>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Apache Airflow</span>
+                    <span class="tool-tag">APIs</span>
+                    <span class="tool-tag">AWS S3</span>
+                    <span class="tool-tag">SQL</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Built an automated data pipeline to extract Reddit data using APIs and schedule ingestion with Airflow DAGs</li>
+                        <li>Processed and stored raw and cleaned datasets in cloud storage for downstream analysis</li>
+                        <li>Designed the pipeline to be modular and repeatable, focusing on orchestration and reliability</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Amazon Sales Analysis Dashboard</h3>
+                    <a href="https://public.tableau.com/app/profile/krishna.barfiwala1195/viz/AmazonSalesAnalysis_17698345271310/Dashboard2" target="_blank" class="project-link">
+                        View Dashboard <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                    </a>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Tableau</span>
+                    <span class="tool-tag">Data Visualization</span>
+                    <span class="tool-tag">Excel/CSV Data Prep</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Built a Tableau dashboard to track sales trends over time and compare performance across product categories/sub-categories</li>
+                        <li>Used calculated fields and filters to drill into key drivers like product-level performance and seasonality</li>
+                        <li>Focused on making the dashboard readable and decision-friendly instead of packing it with charts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <h3 class="project-title">Real Estate Price Analytics & Prediction Application</h3>
+                    <a href="https://github.com/krishnabx/real-estate-price-prediction" target="_blank" class="project-link">
+                        View on GitHub <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+                    </a>
+                </div>
+                <div class="project-tech">
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Scikit-Learn</span>
+                    <span class="tool-tag">Pandas</span>
+                    <span class="tool-tag">NumPy</span>
+                    <span class="tool-tag">Flask</span>
+                    <span class="tool-tag">HTML/CSS/JavaScript</span>
+                    <span class="tool-tag">Machine Learning</span>
+                </div>
+                <div class="project-desc">
+                    <ul>
+                        <li>Prepared and analyzed raw housing data by handling missing values, detecting outliers using statistical methods, and engineering features for modeling</li>
+                        <li>Trained and evaluated regression models using Scikit-Learn, applying hyperparameter tuning, K-Fold cross-validation, and GridSearchCV to validate model stability and performance</li>
+                        <li>Developed a Flask-based REST API to serve real-time predictions based on user inputs such as square footage, bedrooms, bathrooms, and locations</li>
+                        <li>Built a HTML, CSS, and JavaScript frontend that connects to the API and returns real-time home price estimates based on user inputs</li>
+                        <li>Integrated and tested the full system locally as a single ML web application, ensuring smooth data flow from user input to model inference and UI output</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1201,7 +1448,7 @@
             });
         }, observerOptions);
         
-        document.querySelectorAll('section, .stat-item, .experience-item, .skill-category, .education-item, .certifications, .open-to-section').forEach(el => {
+        document.querySelectorAll('section, .stat-item, .experience-item, .project-item, .skill-category, .education-item, .certifications, .open-to-section').forEach(el => {
             observer.observe(el);
         });
         
@@ -1219,4 +1466,5 @@
         });
     </script>
 </body>
-</html>
+</html>'''
+

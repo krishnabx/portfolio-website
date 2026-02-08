@@ -370,7 +370,55 @@ html_content = '''<!DOCTYPE html>
             transform: translateX(-30px);
             transition: all 0.6s ease;
         }
-        
+        .jump-section {
+    margin: 1.5rem 0 3rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+}
+
+.jump-section.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.jump-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+}
+
+.jump-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.jump-link {
+    padding: 0.75rem 1.25rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.jump-link:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
         .open-to-section.visible {
             opacity: 1;
             transform: translateX(0);
@@ -1018,30 +1066,39 @@ Where statistics meets engineering. With dual master's degrees in Statistics and
                 <h3 class="open-to-title">Open to Opportunities</h3>
             </div>
             <div class="open-to-grid">
-                <span class="open-to-tag">📍 Open to Relocation</span>
                 <span class="open-to-tag">📊 Data Analyst</span>
                 <span class="open-to-tag">🧠 Data Scientist</span>
                 <span class="open-to-tag">💼 Business Analyst</span>
                 <span class="open-to-tag">📈 Business Intelligence Analyst</span>
             </div>
         </div>
-        
+        <div class="jump-section">
+    <div class="jump-title">Jump to</div>
+    <div class="jump-links">
+        <a class="jump-link" href="#experience">Experience</a>
+        <a class="jump-link" href="#projects">Projects</a>
+        <a class="jump-link" href="#skills">Skills</a>
+        <a class="jump-link" href="#education">Education</a>
+        <a class="jump-link" href="#contact">Contact</a>
+    </div>
+</div>
+
+
         <div class="stats-grid">
             <div class="stat-item">
                 <div class="stat-number">3+</div>
                 <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">$2M+</div>
-                <div class="stat-label">Revenue Impacted</div>
-            </div>
-            <div class="stat-item">
     <div class="stat-number" style="font-size: 1.8rem; line-height: 1.4;">
         Advertising • Real Estate • Market Research
     </div>
-    <div class="stat-label">Industries Experience</div>
+    <div class="stat-label">Industries Worked In</div>
 </div>
-
+            <div class="stat-item">
+                <div class="stat-number">$2M+</div>
+                <div class="stat-label">Revenue Impacted</div>
+            </div>
 
             <div class="stat-item">
                 <div class="stat-number">20+</div>
@@ -1444,9 +1501,9 @@ Where statistics meets engineering. With dual master's degrees in Statistics and
         });
     }, observerOptions);
 
-    document.querySelectorAll(
-        'section, .stat-item, .experience-item, .project-item, .skill-category, .education-item, .certifications, .open-to-section'
-    ).forEach(el => observer.observe(el));
+    document.querySelectorAll('section, .stat-item, .experience-item, .project-item, .skill-category, .education-item, .certifications, .open-to-section, .jump-section').forEach(el => {
+    observer.observe(el);
+});
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

@@ -1002,6 +1002,18 @@ html_content = '''<!DOCTYPE html>
                 justify-content: center;
             }
         }
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--accent);
+    margin-left: 4px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+
     </style>
 </head>
 <body>
@@ -1022,7 +1034,7 @@ html_content = '''<!DOCTYPE html>
     
     <section class="hero" id="about">
         <div class="hero-content">
-            <h1>Krishna<br>Barfiwala</h1>
+            <h1><span id="typing-text"></span><span class="cursor">|</span></h1>
             <p class="hero-subtitle">Data Analyst & Analytics Engineer</p>
             <div class="hero-location">
                 <i data-lucide="map-pin" style="width: 18px; height: 18px;"></i>
@@ -1122,7 +1134,7 @@ Where statistics meets engineering. With dual master’s degrees in Statistics a
                     <span class="experience-date">September 2024 - October 2025</span>
                 </div>
                 <p class="experience-company">
-                   <a href="https://www.gwadvertising.com" target="_blank" rel="noopener">
+                   <a href="https://www.gwa-inc.com/" target="_blank" rel="noopener">
                     Gregory Welteroth Advertising
                 </a>
             </p>
@@ -1550,6 +1562,25 @@ Where statistics meets engineering. With dual master’s degrees in Statistics a
             navLinks.classList.remove('mobile-open');
         });
     });
+        /* TYPING ANIMATION */
+    const text = "Krishna Barfiwala";
+    const typingElement = document.getElementById("typing-text");
+    let i = 0;
+
+    function typeWriter() {
+        if (i < text.length) {
+            typingElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 120);
+        }
+    }
+
+    window.addEventListener("load", () => {
+        if (typingElement) {
+            setTimeout(typeWriter, 600);
+        }
+    });
+
 </script>
 
 </body>
